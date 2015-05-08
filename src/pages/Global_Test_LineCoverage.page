@@ -1,0 +1,89 @@
+<!-- 
+    show code coverage for particular class or trigger.
+    
+    author : kiwi
+-->
+<apex:page sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" controller="Global_Test_CoverageController" action="{!getCoverage}">
+    <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/normalize.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/bootstrap-nav-wizard.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/autoforce.css')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.Global_Test, 'js/jquery-2.1.3.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Global_Test, 'js/bootstrap.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Global_Test, 'js/jquery.base64.js')}"/>
+        
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Test Coverage</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+    
+        <div class="col-sm-offset-0">
+            <h3>Code Coverage for <span class="type">{!type}</span> <span class="name">{!name}</span> </h3> 
+        </div>
+                
+        <div class="col-sm-offset-0">
+            <h5>Time : {!use} milliseconds</h5>
+        </div>        
+                
+        <div>        
+            <div class="textarea" contenteditable="false"></div>        
+        </div>
+
+    </div>
+    
+<script>
+
+var covered = [{!covered}];
+var uncovered = [{!uncovered}];
+
+$( document ).ready(function() {
+    
+    $.base64.utf8encode = true;
+    
+    var code = $.base64.atob('{!code}', true); 
+    
+    var arr = code.split('\n');
+    
+    var dom = '';
+    
+    $.each(arr, function( index, value ) {
+        
+        index +=1;
+        
+        var style = '';
+        
+        if($.inArray(index, covered) > 0) {         
+            style = 'covered';
+        }
+        else if($.inArray(index, uncovered) > 0) {      
+            style = 'uncovered';
+        }
+        
+        if(value.trim() == '')
+            value = ' ';
+        
+            
+        dom+= '<span class="line">' + index + '</span>';
+        dom+= '<pre class="' + style + '">' + htmlEntities(value) + '</pre>';
+                
+    });
+    
+    var codeElement = $.parseHTML(dom);
+    
+    $(codeElement).appendTo($('.textarea'));
+    
+    
+});
+
+function htmlEntities(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+</script>
+</apex:page>

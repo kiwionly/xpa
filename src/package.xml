@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Global_Test_CodeCoverageReader</members>
+        <members>Global_Test_Controller</members>
+        <members>Global_Test_CoverageController</members>
+        <members>Global_Test_QueryProcessor</members>
+        <members>Global_Test_Record</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Global_Test_CodeCoverage</members>
+        <members>Global_Test_CodeCoverageResult</members>
+        <members>Global_Test_LineCoverage</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Global_Test</members>
+        <name>StaticResource</name>
+    </types>
+    <version>33.0</version>
+</Package>

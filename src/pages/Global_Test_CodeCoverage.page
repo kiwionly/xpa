@@ -1,0 +1,59 @@
+<!-- 
+    show input form for user to select class/trigger
+    
+    author : kiwi
+-->
+<apex:page sidebar="false" showHeader="false" docType="html-5.0" standardStylesheets="false" >
+    <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/normalize.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/bootstrap.min.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/bootstrap-nav-wizard.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.Global_Test, 'css/autoforce.css')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.Global_Test, 'js/jquery-2.1.3.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.Global_Test, 'js/bootstrap.min.js')}"/>
+    
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Test Coverage</a>
+            </div>
+        </div>
+    </nav> 
+
+    <div class="container">
+    
+        <div class="col-sm-offset-0 header">
+            <h3>Show Code Coverage</h3>
+        </div>
+        
+        <form class="form-horizontal" role="form" action="/apex/Global_Test_CodeCoverageResult" method="get">
+        
+            <div class="form-group">
+                <label for="type" class="col-sm-2 control-label">Select Class or Trigger</label>
+                <div class="col-sm-5">
+                    <select class="form-control" id="instance" name="type" >
+                        <option value="ApexClass">ApexClass</option>
+                        <option value="ApexTrigger">ApexTrigger</option>
+                    </select>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="prefix" class="col-sm-2 control-label">Prefix</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="prefix" placeholder="put file prefix here" name="prefix" />
+                </div>
+            </div>
+                        
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-4">
+                    <button type="submit" class="btn btn-default">Show Code Coverage</button>
+                </div>
+            </div>
+            
+        </form>
+
+    </div>
+    
+</apex:page>

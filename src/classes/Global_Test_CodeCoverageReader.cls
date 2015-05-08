@@ -105,6 +105,9 @@ public class Global_Test_CodeCoverageReader
     
     private String createQueryIds(List<TypeInfo> clazzList) 
     {
+    	if(clazzList.isEmpty())
+    		return '';
+    	
         String allId = '';
 
         for (TypeInfo kv : clazzList) {
@@ -132,9 +135,13 @@ public class Global_Test_CodeCoverageReader
                     
             String id = clazz.id;
             String name = clazz.Name;
+            
+            if(name.contains('Global_Test')) {             
+                clazzList.add(new TypeInfo(id, name, type));
+            }            
                         
             if(!(name.contains('Test') || name.contains('test'))) {             
-                clazzList.add(new TypeInfo(id, name, 'ApexClass'));
+                clazzList.add(new TypeInfo(id, name, type));
             }
         }
         

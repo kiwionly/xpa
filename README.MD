@@ -2,6 +2,7 @@
 xpa is a salesforce code coverage view tool.
 
 It do 2 thing:
+
 1) list you apex code/trigger by prefix
  
 2) show the coverage line.

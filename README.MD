@@ -1,4 +1,4 @@
-This project had move to https://github.com/kiwionly/Autofoce
+This project had move to https://github.com/kiwionly/AutoForce
 
 #xpa
 xpa is a salesforce code coverage view tool.
